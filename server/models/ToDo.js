@@ -6,9 +6,6 @@ const ToDoSchema = new mongoose.Schema({
     required: [true, 'The title is required'],
     minlength: 1,
   },
-  description: {
-    type: String,
-  },
 })
 
 const ToDo = mongoose.model('ToDo', ToDoSchema)

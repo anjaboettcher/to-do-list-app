@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-console.log(process.env.NODE_ENV)
-
 const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
@@ -92,6 +90,20 @@ export default {
   addToDo(body) {
     return service
       .post('/todos', body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteToDo(todoId) {
+    return service
+      .delete(`/todos/${todoId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  editToDo(todoId, body) {
+    return service
+      .post(`/todos/${todoId}`, body)
       .then(res => res.data)
       .catch(errHandler)
   },
