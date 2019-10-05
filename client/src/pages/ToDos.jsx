@@ -60,9 +60,10 @@ export default withStyles(styles)(function ToDos(props) {
         <h5>MOST IMPORTANT TASK OF TODAY</h5>
       </Box>
 
-      {todos.map(todo => (
+      {todos.slice(0, 1).map((todo, i) => (
         <ToDo
           key={todo._id}
+          index={i}
           todo={todo}
           editToDo={editToDo}
           deleteToDo={deleteToDo}
@@ -75,11 +76,33 @@ export default withStyles(styles)(function ToDos(props) {
         <h5>SECONDARY TASKS OF TODAY</h5>
       </Box>
 
-      <AddNew />
+      {todos.slice(1, 3).map((todo, i) => (
+        <ToDo
+          key={todo._id}
+          index={i + 1}
+          todo={todo}
+          editToDo={editToDo}
+          deleteToDo={deleteToDo}
+        />
+      ))}
+
+      {todos.length < 3 && <AddNew createToDo={createToDo} />}
 
       <Box style={{ backgroundColor: bgColors.Grey }} p={0.5}>
         <h5>ADDITIONAL TASKS</h5>
       </Box>
+
+      {todos.slice(3, 5).map((todo, i) => (
+        <ToDo
+          key={todo._id}
+          index={i + 3}
+          todo={todo}
+          editToDo={editToDo}
+          deleteToDo={deleteToDo}
+        />
+      ))}
+
+      {todos.length < 5 && <AddNew createToDo={createToDo} />}
     </Container>
   )
 })

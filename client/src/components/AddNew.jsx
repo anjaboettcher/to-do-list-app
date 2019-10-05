@@ -43,19 +43,23 @@ export default withStyles(styles)(function EditField(props) {
       <ListItemText>
         <TextField
           value={title}
+          label="Enter your to do"
           onChange={handleChange}
           className={classes.textField}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <ListItemText />
-                <IconButton onClick={handleClick}>
-                  <Add />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
+          // InputProps={{
+          //   endAdornment: (
+          //     <InputAdornment position="end">
+          //       <ListItemText />
+          //       <IconButton onClick={handleClick}>
+          //         <Add />
+          //       </IconButton>
+          //     </InputAdornment>
+          //   ),
+          // }}
         />
+        <IconButton onClick={handleClick}>
+          <Add />
+        </IconButton>
       </ListItemText>
     </ListItem>
   )

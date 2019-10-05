@@ -4,7 +4,7 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import { withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
+import Badge from '@material-ui/core/Badge'
 import ListItemText from '@material-ui/core/ListItemText'
 import Delete from '@material-ui/icons/Delete'
 import Edit from '@material-ui/icons/Edit'
@@ -35,7 +35,7 @@ const styles = theme => ({
 })
 
 export default withStyles(styles)(function EditField(props) {
-  const { todo, editToDo, deleteToDo, classes } = props
+  const { index, todo, editToDo, deleteToDo, classes } = props
 
   const [title, setTitle] = useState(todo.title)
   const [editing, setEditing] = useState(false)
@@ -57,11 +57,20 @@ export default withStyles(styles)(function EditField(props) {
   }
 
   return (
-    <ListItem>
-      <ListItemIcon>1</ListItemIcon>
+    <ListItem xs={10} md={11} item style={{ paddingRight: 16 }}>
+      <IconButton
+        aria-label="4"
+        style={{ fontSize: 14 }}
+        variant="outlined"
+        className={classes.margin}
+      >
+        <Badge badgeContent={index + 1} color="secondary"></Badge>
+      </IconButton>
+
       <ListItemText>
         <TextField
           name="title"
+          width="100%"
           value={title}
           margin="normal"
           onChange={handleChange}
@@ -72,7 +81,7 @@ export default withStyles(styles)(function EditField(props) {
               disabled: classes.disabled,
             },
             endAdornment: (
-              <InputAdornment position="end">
+              <InputAdornment position="end" xs={2} md={1} item>
                 <IconButton onClick={handleClickDelete}>
                   <Delete />
                 </IconButton>
