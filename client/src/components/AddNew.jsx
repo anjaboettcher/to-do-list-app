@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
 import Add from '@material-ui/icons/Add'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import { withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import ListItem from '@material-ui/core/ListItem'
@@ -11,9 +10,9 @@ const styles = theme => ({
   textField: {
     marginLeft: 8,
     marginRight: 8,
-    width: 300,
+    width: 435,
     color: 'black',
-    fontSize: 30,
+    fontSize: 20,
     opacity: 1,
     borderBottom: 0,
     '&:before': {
@@ -27,7 +26,6 @@ const styles = theme => ({
 
 export default withStyles(styles)(function EditField(props) {
   const { createToDo, classes } = props
-
   const [title, setTitle] = useState('')
 
   function handleChange(e) {
@@ -46,16 +44,6 @@ export default withStyles(styles)(function EditField(props) {
           label="Enter your to do"
           onChange={handleChange}
           className={classes.textField}
-          // InputProps={{
-          //   endAdornment: (
-          //     <InputAdornment position="end">
-          //       <ListItemText />
-          //       <IconButton onClick={handleClick}>
-          //         <Add />
-          //       </IconButton>
-          //     </InputAdornment>
-          //   ),
-          // }}
         />
         <IconButton onClick={handleClick}>
           <Add />

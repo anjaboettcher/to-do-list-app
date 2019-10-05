@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import TextField from '@material-ui/core/TextField'
-import InputAdornment from '@material-ui/core/InputAdornment'
 import { withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import ListItem from '@material-ui/core/ListItem'
-import Badge from '@material-ui/core/Badge'
+import Avatar from '@material-ui/core/Avatar'
+import { deepOrange } from '@material-ui/core/colors'
 import ListItemText from '@material-ui/core/ListItemText'
 import Delete from '@material-ui/icons/Delete'
 import Edit from '@material-ui/icons/Edit'
@@ -13,9 +13,9 @@ const styles = theme => ({
   textField: {
     marginLeft: 8,
     marginRight: 8,
-    width: 300,
+    width: 340,
     color: 'black',
-    fontSize: 30,
+    fontSize: 20,
     opacity: 1,
     borderBottom: 0,
     '&:before': {
@@ -31,6 +31,14 @@ const styles = theme => ({
   },
   btnIcons: {
     marginLeft: 10,
+  },
+  orangeAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: deepOrange[500],
+    fontSize: 12,
+    width: 30,
+    height: 30,
   },
 })
 
@@ -57,21 +65,15 @@ export default withStyles(styles)(function EditField(props) {
   }
 
   return (
-    <ListItem xs={10} md={11} item style={{ paddingRight: 16 }}>
-      <IconButton
-        aria-label="4"
-        style={{ fontSize: 14 }}
-        variant="outlined"
-        className={classes.margin}
-      >
-        <Badge badgeContent={index + 1} color="secondary"></Badge>
-      </IconButton>
+    <ListItem align xs={10} md={11} item style={{ paddingRight: 16 }}>
+      <Avatar className={classes.orangeAvatar}>{index + 1} </Avatar>
 
       <ListItemText>
         <TextField
           name="title"
           width="100%"
           value={title}
+          multiline={true}
           margin="normal"
           onChange={handleChange}
           disabled={!editing}
@@ -80,18 +82,14 @@ export default withStyles(styles)(function EditField(props) {
             classes: {
               disabled: classes.disabled,
             },
-            endAdornment: (
-              <InputAdornment position="end" xs={2} md={1} item>
-                <IconButton onClick={handleClickDelete}>
-                  <Delete />
-                </IconButton>
-                <IconButton onClick={handleClickEdit}>
-                  <Edit />
-                </IconButton>
-              </InputAdornment>
-            ),
           }}
         />
+        <IconButton onClick={handleClickDelete}>
+          <Delete />
+        </IconButton>
+        <IconButton onClick={handleClickEdit}>
+          <Edit />
+        </IconButton>
       </ListItemText>
     </ListItem>
   )
