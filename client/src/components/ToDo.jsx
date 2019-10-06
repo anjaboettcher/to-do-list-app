@@ -6,14 +6,22 @@ import ListItem from '@material-ui/core/ListItem'
 import Avatar from '@material-ui/core/Avatar'
 import { deepOrange } from '@material-ui/core/colors'
 import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import Delete from '@material-ui/icons/Delete'
 import Edit from '@material-ui/icons/Edit'
 
 const styles = theme => ({
+  root: {
+    maxWidth: 800,
+    margin: '0 auto',
+  },
+
   textField: {
     marginLeft: 8,
     marginRight: 8,
-    width: 340,
+    width: '100%',
+    maxWidth: 340,
     color: 'black',
     fontSize: 20,
     opacity: 1,
@@ -65,8 +73,17 @@ export default withStyles(styles)(function EditField(props) {
   }
 
   return (
-    <ListItem align xs={10} md={11} item style={{ paddingRight: 16 }}>
-      <Avatar className={classes.orangeAvatar}>{index + 1} </Avatar>
+    <ListItem
+      align
+      xs={10}
+      md={11}
+      item
+      style={{ paddingRight: 16 }}
+      className={classes.root}
+    >
+      <ListItemIcon>
+        <Avatar className={classes.orangeAvatar}>{index + 1} </Avatar>
+      </ListItemIcon>
 
       <ListItemText>
         <TextField
@@ -84,12 +101,15 @@ export default withStyles(styles)(function EditField(props) {
             },
           }}
         />
-        <IconButton onClick={handleClickDelete}>
-          <Delete />
-        </IconButton>
-        <IconButton onClick={handleClickEdit}>
-          <Edit />
-        </IconButton>
+
+        <ListItemSecondaryAction>
+          <IconButton onClick={handleClickDelete}>
+            <Delete />
+          </IconButton>
+          <IconButton onClick={handleClickEdit}>
+            <Edit />
+          </IconButton>
+        </ListItemSecondaryAction>
       </ListItemText>
     </ListItem>
   )

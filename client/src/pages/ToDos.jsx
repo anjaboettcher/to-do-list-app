@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Box from '@material-ui/core/Box'
-import Container from '@material-ui/core/Container'
 import { withStyles } from '@material-ui/styles'
 
 import api from '../api'
@@ -8,13 +7,22 @@ import api from '../api'
 import AddNew from '../components/AddNew'
 import ToDo from '../components/ToDo'
 
-var bgColors = {
-  Grey: '#F5F5F5',
-}
+const styles = theme => ({
+  box: {
+    backgroundColor: '#F5F5F5',
+  },
 
-const styles = theme => ({})
+  header: {
+    fontFamily: "'Karla', sans-serif",
+    letterSpacing: '3px',
+    fontSize: '1.2em',
+    textAlign: 'center',
+  },
+})
 
 export default withStyles(styles)(function ToDos(props) {
+  const { classes } = props
+
   const [todos, setToDos] = useState([])
 
   useEffect(() => {
@@ -55,9 +63,9 @@ export default withStyles(styles)(function ToDos(props) {
   }
 
   return (
-    <Container maxWidth="sm">
-      <Box style={{ backgroundColor: bgColors.Grey }} p={0.5}>
-        <h5>MOST IMPORTANT TASK OF TODAY</h5>
+    <>
+      <Box p={0.5} className={classes.box}>
+        <h5 className={classes.header}>MOST IMPORTANT TASK OF TODAY</h5>
       </Box>
 
       {todos.slice(0, 1).map((todo, i) => (
@@ -72,8 +80,8 @@ export default withStyles(styles)(function ToDos(props) {
 
       {todos.length < 1 && <AddNew createToDo={createToDo} />}
 
-      <Box style={{ backgroundColor: bgColors.Grey }} p={0.5}>
-        <h5>SECONDARY TASKS OF TODAY</h5>
+      <Box p={0.5} className={classes.box}>
+        <h5 className={classes.header}>SECONDARY TASKS OF TODAY</h5>
       </Box>
 
       {todos.slice(1, 3).map((todo, i) => (
@@ -88,11 +96,11 @@ export default withStyles(styles)(function ToDos(props) {
 
       {todos.length < 3 && <AddNew createToDo={createToDo} />}
 
-      <Box style={{ backgroundColor: bgColors.Grey }} p={0.5}>
-        <h5>ADDITIONAL TASKS</h5>
+      <Box p={0.5} className={classes.box}>
+        <h5 className={classes.header}>ADDITIONAL TASKS</h5>
       </Box>
 
-      {todos.slice(3, 5).map((todo, i) => (
+      {todos.slice(3).map((todo, i) => (
         <ToDo
           key={todo._id}
           index={i + 3}
@@ -102,7 +110,7 @@ export default withStyles(styles)(function ToDos(props) {
         />
       ))}
 
-      {todos.length < 5 && <AddNew createToDo={createToDo} />}
-    </Container>
+      <AddNew createToDo={createToDo} />
+    </>
   )
 })

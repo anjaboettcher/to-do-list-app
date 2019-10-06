@@ -5,13 +5,20 @@ import { withStyles } from '@material-ui/core/styles'
 import IconButton from '@material-ui/core/IconButton'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 
 const styles = theme => ({
+  root: {
+    maxWidth: 800,
+    margin: '0 auto',
+  },
+
   textField: {
     marginLeft: 8,
     marginRight: 8,
-    width: 435,
-    color: 'black',
+    width: '100%',
+    maxWidth: 340,
     fontSize: 20,
     opacity: 1,
     borderBottom: 0,
@@ -37,7 +44,9 @@ export default withStyles(styles)(function EditField(props) {
   }
 
   return (
-    <ListItem>
+    <ListItem className={classes.root}>
+      <ListItemIcon />
+
       <ListItemText>
         <TextField
           value={title}
@@ -45,9 +54,11 @@ export default withStyles(styles)(function EditField(props) {
           onChange={handleChange}
           className={classes.textField}
         />
-        <IconButton onClick={handleClick}>
-          <Add />
-        </IconButton>
+        <ListItemSecondaryAction>
+          <IconButton onClick={handleClick}>
+            <Add />
+          </IconButton>
+        </ListItemSecondaryAction>
       </ListItemText>
     </ListItem>
   )
